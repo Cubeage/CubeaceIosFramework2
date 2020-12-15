@@ -86,7 +86,7 @@ typedef void (^Completion)(BOOL success, id data, NSError* error);
 //日志上传
 - (void)logCollectionUploadContent:(NSString *)logContent Completion:(void (^)(BOOL success, id data, NSError* error))completion;
 
-//device token上传
+//Firebase FCM token上传
 - (void)reportFirebaseToken:(NSString *)token DeviceCode:(NSString *)deviceCode Completion:(void (^)(BOOL success, id data, NSError* error))completion;
 
 //请求是否是游客guest登录

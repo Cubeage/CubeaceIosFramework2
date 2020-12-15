@@ -26,6 +26,8 @@ typedef void (^ProductsInfoCallBack)(NSArray * products);
 
 typedef void (^CompletionCallback)(void);
 
+typedef void (^InAppPurchasesFail)(id error);
+
 @interface CubeaceSDKManager : NSObject
 
 @property (nonatomic, strong)CCGAssistiveTouchButton * CCGButton;
@@ -37,6 +39,8 @@ typedef void (^CompletionCallback)(void);
 @property (nonatomic, strong)NSTimer * redDotTimer;
 
 @property (nonatomic, strong)NSTimer * popTopTipsTimer;
+
+@property (nonatomic, strong)InAppPurchasesFail appPurchasesFail;
 
 + (instancetype)sharedInstance;
 
@@ -90,9 +94,14 @@ typedef void (^CompletionCallback)(void);
 - (void)bindAccountSetting;
 
 /**
-*  评分弹框接口
+*  SDK评分弹框接口
 */
 - (void)showRating;
+
+/**
+*  App Store评分弹框接口
+*/
+- (void)app_StoreShowRating;
 
 /**
 *  登录接口
@@ -118,7 +127,7 @@ typedef void (^CompletionCallback)(void);
  *  @param success   购买成功的回调
  *  @param failure   购买失败的回调
  */
-- (void)buyGameItem:(NSString * __nonnull)itemId GameOrderNo:(NSString * __nonnull)gameOrderNo Success:(void (^)(NSDictionary * response))success Failure:(void (^)(NSError *error))failure;
+- (void)buyGameItem:(NSString * __nonnull)itemId GameOrderNo:(NSString * __nonnull)gameOrderNo Success:(void (^)(NSDictionary * response))success Failure:(InAppPurchasesFail)failure;
 
 //查漏补单
 - (void)checkOrder;
